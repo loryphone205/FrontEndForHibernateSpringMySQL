@@ -1,0 +1,119 @@
+<div class="list" *ngIf="vista === 'Visualizza'">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <!-- cliente Column -->
+        <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef>Cliente</th>
+            <td mat-cell *matCellDef="let element">
+                <ul>
+                    <li>{{ element.idCliente.id }}</li>
+                    <li>{{ element.idCliente.nome }}</li>
+                    <li>{{ element.idCliente.cognome }}</li>
+                    <li>{{ element.idCliente.dataNascita }}</li>
+                </ul>
+            </td>
+        </ng-container>
+
+        <!-- fornitore Column -->
+        <ng-container matColumnDef="fornitore">
+            <th mat-header-cell *matHeaderCellDef>Fornitore</th>
+            <td mat-cell *matCellDef="let element">
+                <ul>
+                    <li>{{ element.idFornitore.id }}</li>
+                    <li>{{ element.idFornitore.nome }}</li>
+                    <li>{{ element.idFornitore.descrizione }}</li>
+                </ul>
+            </td>
+        </ng-container>
+
+        <!-- buttons Column -->
+        <ng-container matColumnDef="buttons">
+            <th mat-header-cell *matHeaderCellDef>Azioni</th>
+            <td
+                mat-cell
+                *matCellDef="let element; let i = index"
+                class="buttonsControl"
+            >
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="changeModifica(i)"
+                >
+                    Modifica
+                </button>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="deleteByPos(i)"
+                >
+                    Elimina
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <section>
+        <button
+            mat-raised-button
+            class="aggiungi"
+            color="primary"
+            (click)="changeAggiungi()"
+        >
+            Aggiungi
+        </button>
+    </section>
+</div>
+<div class="formDiv" *ngIf="vista === 'Aggiungi' || vista === 'Modifica'">
+    <form [formGroup]="associatiForm">
+        <div class="formFields">
+            <mat-form-field>
+                <mat-label>Seleziona Cliente</mat-label>
+                <mat-select formControlName="idCliente">
+                    <mat-option *ngFor="let item of clienti" [value]="item"
+                        >{{ item.id }}, {{ item.nome | titlecase }},
+                        {{ item.cognome | titlecase }},
+                        {{ item.dataNascita }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Seleziona Fornitore</mat-label>
+                <mat-select formControlName="idFornitore">
+                    <mat-option *ngFor="let item of fornitori" [value]="item"
+                        >{{ item.id }}, {{ item.nome | titlecase }},
+                        {{ item.descrizione | titlecase }}</mat-option
+                    >
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="formControlButtons">
+            <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                (click)="sendForm()"
+                [disabled]="associatiForm.invalid"
+            >
+                Invia
+            </button>
+            <button type="reset" mat-raised-button color="primary">
+                Reset
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="changeVisualizza()"
+            >
+                Indietro
+            </button>
+        </div>
+    </form>
+</div>

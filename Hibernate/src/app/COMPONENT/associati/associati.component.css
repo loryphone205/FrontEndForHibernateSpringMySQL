@@ -1,0 +1,44 @@
+th,
+td {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+section {
+    text-align: center;
+}
+
+.aggiungi {
+    margin: 0.7rem;
+}
+
+.formControlButtons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.formControlButtons > button {
+    width: 10rem;
+    margin: 1rem 3rem 1rem 3rem;
+}
+
+.formFields {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.formFields > mat-form-field {
+    margin: 1rem 3rem 1rem 3rem;
+}
+
+.buttonsControl > button {
+    margin: 0.2rem;
+    width: 5rem;
+}

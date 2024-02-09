@@ -1,0 +1,9 @@
+article > h1,
+p {
+    margin: 10px;
+    font-weight: lighter;
+}
+
+article {
+    text-align: center;
+}

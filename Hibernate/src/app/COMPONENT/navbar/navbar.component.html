@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+    <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        [matMenuTriggerFor]="menu"
+    >
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="changeHomepage()">Homepage</button>
+        <button mat-menu-item [matMenuTriggerFor]="liste">Liste</button>
+    </mat-menu>
+    <mat-menu #liste="matMenu">
+        <button mat-menu-item (click)="changeClienti()">Clienti</button>
+        <button mat-menu-item (click)="changeFornitori()">Fornitori</button>
+        <button mat-menu-item (click)="changeAssociati()">Associati</button>
+    </mat-menu>
+    <span>{{ position }}</span>
+    <span class="example-spacer"></span>
+    <a
+        href="https://github.com/loryphone205"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <button
+            mat-icon-button
+            class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon"
+            matTooltip="My Github"
+        >
+            <mat-icon>school</mat-icon>
+        </button>
+    </a>
+    <a
+        href="https://www.linkedin.com/in/lorenzo-vaccaro-23665318b/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <button
+            mat-icon-button
+            class="example-icon"
+            aria-label="Example icon-button with share icon"
+            matTooltip="My LinkedIn"
+        >
+            <mat-icon>person_add</mat-icon>
+        </button>
+    </a>
+</mat-toolbar>

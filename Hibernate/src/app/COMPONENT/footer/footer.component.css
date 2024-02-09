@@ -1,0 +1,16 @@
+footer {
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    background-color: #121212;
+}
+
+footer > h2 {
+    font-weight: lighter;
+    margin: 0;
+}

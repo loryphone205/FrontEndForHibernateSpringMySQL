@@ -1,0 +1,102 @@
+<div class="list" *ngIf="vista === 'Visualizza'">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <!-- Nome Column -->
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+        </ng-container>
+
+        <!-- Cognome Column -->
+        <ng-container matColumnDef="descrizione">
+            <th mat-header-cell *matHeaderCellDef>Descrizione</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.descrizione }}
+            </td>
+        </ng-container>
+        <!-- Azioni Column -->
+        <ng-container matColumnDef="buttons">
+            <th mat-header-cell *matHeaderCellDef>Azioni</th>
+            <td
+                class="buttonsControl"
+                mat-cell
+                *matCellDef="let element; let i = index"
+            >
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="changeModifica(i)"
+                >
+                    Modifica
+                </button>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="deleteByPos(i)"
+                >
+                    Elimina
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <section>
+        <button
+            mat-raised-button
+            class="aggiungi"
+            color="primary"
+            (click)="changeAggiungi()"
+        >
+            Aggiungi
+        </button>
+    </section>
+</div>
+<div class="formDiv" *ngIf="vista === 'Aggiungi' || vista === 'Modifica'">
+    <form [formGroup]="fornitoriForm">
+        <div class="formFields">
+            <mat-form-field appearance="fill">
+                <mat-label>Nome</mat-label>
+                <input
+                    formControlName="nome"
+                    matInput
+                    placeholder="Inserisci il Nome"
+                />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Cognome</mat-label>
+                <input
+                    formControlName="descrizione"
+                    matInput
+                    placeholder="Inserisci Descrizione"
+                />
+            </mat-form-field>
+        </div>
+        <div class="formControlButtons">
+            <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                (click)="sendForm()"
+                [disabled]="fornitoriForm.invalid"
+            >
+                Invia
+            </button>
+            <button type="reset" mat-raised-button color="primary">
+                Reset
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="changeVisualizza()"
+            >
+                Indietro
+            </button>
+        </div>
+    </form>
+</div>
